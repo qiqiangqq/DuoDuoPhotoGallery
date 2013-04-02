@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DuoDuoPhotoGallery.QCodeKitAdUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:madLib="clr-namespace:SmartMad.Ads.WindowsPhone7.WPF;assembly=SmartMad.Ads.WindowsPhone7"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" Tap="LayoutRoot_Tap">
+        <madLib:AdView 
+                x:Name="smartMadAdView" 
+                AdPositionID="90034517"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                AdInterval="20"
+                AdAnimation="AdAnimationFlipFromLeft"
+                IsDebugMode="False"/>
+    </Grid>
+</UserControl>

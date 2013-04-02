@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DuoDuoPhotoGallery.DDPhotoImageUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="imgUc"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="DownloadIndicatorTxtStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource AppCommonTxtColor}"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="TextTrimming" Value="None"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+        </Style>
+        <Storyboard x:Name="IndicatorSb" RepeatBehavior="Forever">
+        	<DoubleAnimation Duration="0:0:0.3" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="indicatorPanel" d:IsOptimized="True"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Width="{Binding ElementName=imgUc, Path=Width}" Height="{Binding ElementName=imgUc, Path=Height}">
+        <Grid.Background>
+            <ImageBrush x:Name="rootImgBrush" AlignmentX="Center" AlignmentY="Center" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Rectangle x:Name="coverRect" Fill="{StaticResource AppContentBackBrush}"/>
+        <Grid x:Name="indicatorPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <TextBlock x:Name="indicatorTxt" HorizontalAlignment="Center" Style="{StaticResource DownloadIndicatorTxtStyle}" Margin="0 10 0 0"/>
+        </Grid>
+    </Grid>
+</UserControl>

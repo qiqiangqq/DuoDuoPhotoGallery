@@ -1,0 +1,28 @@
+﻿<Application 
+    x:Class="DuoDuoPhotoGallery.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--应用程序资源-->
+    <Application.Resources>
+        <sys:String x:Key="AppName">多多内涵吧</sys:String>
+        <sys:String x:Key="MainPageFreshContentTitle">最新内涵</sys:String>
+        <sys:String x:Key="MainPageCategoryContentTitle">分类</sys:String>
+        <sys:String x:Key="MainPageMoreTitle">更多</sys:String>
+        <sys:String x:Key="About">关于</sys:String>
+        <SolidColorBrush x:Key="AppContentBackBrush" Color="#D8C28D3F"></SolidColorBrush>
+        <SolidColorBrush x:Key="AppCommonTxtColor" Color="#FF371A00"></SolidColorBrush>
+        <!--多多内涵吧SmartMad广告控件应用程序ID-->
+        <TextBlock x:Key="APP_ID" Text="aacd23831389f5a0" />
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--处理应用程序的生存期事件所需的对象-->
+        <shell:PhoneApplicationService 
+            Launching="Application_Launching" Closing="Application_Closing" 
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+</Application>

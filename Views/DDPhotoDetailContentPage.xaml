@@ -1,0 +1,66 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="DuoDuoPhotoGallery.Views.DDPhotoDetailContentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:DuoDuoPhotoGallery"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="detailContentTxtStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextTrimming" Value="None"/>
+        </Style>
+        <Storyboard x:Name="ContentShowSb">
+            <DoubleAnimation Duration="0:0:0.3" From="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="indicatorPanel" d:IsOptimized="True"/>
+        </Storyboard>
+        <Storyboard x:Name="ContentHideSb">
+            <DoubleAnimation Duration="0:0:0.3" From="1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="indicatorPanel" d:IsOptimized="True"/>
+        </Storyboard>
+        <DataTemplate x:Key="ImgListDT">
+            <local:DDPhotoImageUC x:Name="imgUC" ImageSource="{Binding DetailContentImageWebUrl}"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#D8C28D3F" Mode="Minimized">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="存到本地" Click="SavePhotoToMediaLibMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="社交分享" Click="ApplicationBarSNSShareMenuItem_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Asserts/pageBackground.jpg"/>
+        </Grid.Background>
+        <Grid x:Name="ImgContentPanel">
+            <local:DDPhotoFSImageUC x:Name="imgUC" ImageSource="{Binding DetailContentImageWebUrl}" Margin="0,0,0,10"
+                 IsShowImgLoadingIndicator="True"/>
+        </Grid>
+        <Grid x:Name="indicatorPanel" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="100" 
+              Background="{StaticResource AppContentBackBrush}" Opacity="0" Margin="0 0 0 30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <StackPanel x:Name="stackPanel" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                <TextBlock Text="{Binding PhotoUGC.PhotoGoodComments}" Style="{StaticResource detailContentTxtStyle}"/>
+                <TextBlock Text="{Binding PhotoUGC.PhotoClickTimes}" Style="{StaticResource detailContentTxtStyle}" Margin="10 0 0 0"/>
+            </StackPanel>
+            <TextBlock x:Name="textBlock" Grid.Row="1" Text="{Binding PhotoIntro}" Style="{StaticResource detailContentTxtStyle}" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Margin="10 0 0 0"/>
+        </Grid>
+        <local:DDPhotoLoadingUC x:Name="loadinUC" Width="400" Height="50" ColorFrom="White" ColorEnd="#B2000000" Visibility="Collapsed"/>
+    </Grid>
+</phone:PhoneApplicationPage>
